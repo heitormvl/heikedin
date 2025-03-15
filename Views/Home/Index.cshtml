@@ -1,0 +1,127 @@
+﻿@model heikedin.ViewModels.FormViewModel
+@{
+    ViewData["Title"] = "Heikedin";
+}
+
+<div class="fixed-header">
+    <div class="container">
+        <h1 class="mb-4 text-center">Cadastro para Vaga de Emprego</h1>
+        <h2 class="mb-4 text-center">Degustador Sênior</h2>
+    </div>
+</div>
+
+<div class="container content-wrapper">
+    <div class="card bg-dark text-light mb-5 border-secondary">
+        <div class="card-body">
+            <h3 class="card-title mb-3">Descrição da Vaga</h3>
+            <p class="card-text">
+                Procuramos um profissional apaixonado por gastronomia para integrar
+                nossa equipe de degustação. O candidato ideal deve possuir paladar
+                refinado e capacidade de avaliar diferentes perfis gustativos em
+                pratos elaborados.
+            </p>
+
+            <h4 class="mt-4 mb-3">Benefícios</h4>
+            <ul class="list-group list-group-flush bg-dark">
+                <li class="list-group-item bg-dark text-light border-secondary">
+                    ✨ Fornecimento vitalício de obras preparadas pelo renomado chef
+                    Heitor Leite
+                </li>
+                <li class="list-group-item bg-dark text-light border-secondary">
+                    💝 Atendimento humano e carinhoso, podendo receber aumento para
+                    amoroso
+                </li>
+                <li class="list-group-item bg-dark text-light border-secondary">
+                    🍽️ Refeições exclusivas preparadas diariamente
+                </li>
+                <li class="list-group-item bg-dark text-light border-secondary">
+                    🏆 Participação em eventos gastronômicos premium
+                </li>
+                <li class="list-group-item bg-dark text-light border-secondary">
+                    ✅ Outros benefícios a serem acordados
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="text-center mb-5">
+        <button id="avancarBtn" class="btn btn-primary btn-lg">
+            Avançar para o Cadastro
+        </button>
+    </div>
+
+    <form id="jobForm" asp-action="Index" asp-controller="Home" method="post">
+        <div class="form-group mb-3">
+            <label asp-for="Nome" class="form-label">Nome</label>
+            <input asp-for="Nome" class="form-control" required />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="CPF" class="form-label">CPF</label>
+            <input asp-for="CPF" class="form-control" maxlength="14" placeholder="000.000.000-00"
+                oninput="formatarCPF(this)" required />
+            <span asp-validation-for="CPF" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="DataNascimento" class="form-label">Data de Nascimento</label>
+            <input asp-for="DataNascimento" class="form-control" type="date" required />
+            <span asp-validation-for="DataNascimento" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Curso" class="form-label">Curso de Graduação</label>
+            <input asp-for="Curso" class="form-control" required />
+            <span asp-validation-for="Curso" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Descricao" class="form-label">Experiências Prévias</label>
+            <textarea asp-for="Descricao" class="form-control" rows="4" required></textarea>
+            <span asp-validation-for="Descricao" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+    <div id="message" class="mt-3"></div>
+</div>
+
+<!-- Modal de Sucesso -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Sucesso!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @if (TempData["Success"] != null)
+                {
+                    @TempData["Success"]
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            @if (TempData["Success"] != null)
+                {
+                    <text>
+                        var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                        successModal.show();
+                    </text>
+            }
+
+                @if (TempData["Error"] != null)
+                {
+                    <text>
+                        document.getElementById('message').innerHTML =
+                        '<div class="alert alert-danger">@TempData["Error"]</div>';
+                    </text>
+            }
+            });
+    </script>
+}                             
+                            

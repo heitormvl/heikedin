@@ -1,0 +1,74 @@
+body {
+  background-color: #343a40; /* Fundo escuro */
+  color: #f8f9fa; /* Texto claro */
+}
+.container {
+  max-width: 90% !important;
+}
+.form-control,
+.form-select {
+  background-color: #495057;
+  color: #f8f9fa;
+  border-color: #6c757d;
+}
+.form-control:focus {
+  background-color: #495057;
+  color: #f8f9fa;
+}
+.form-group {
+  opacity: 0;
+  height: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0;
+  overflow: hidden;
+}
+
+.form-group.visible {
+  opacity: 1;
+  height: auto;
+  transform: translateY(0);
+  margin-bottom: 1rem;
+}
+
+.form-group.visible label {
+  animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #343a40;
+  z-index: 1000;
+  padding: 20px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.content-wrapper {
+  margin-top: 200px; /* Aumentado para dar mais espaço */
+  padding-top: 20px;
+}
+
+#jobForm {
+  opacity: 0;
+  display: none;
+  transition: opacity 0.5s ease-out;
+}
+
+#jobForm.visible {
+  opacity: 1;
+  display: block;
+}
