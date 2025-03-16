@@ -13,7 +13,7 @@ namespace heikedin.ViewModels
         public string CPF { get; set; } = string.Empty;
 
         [Required]
-        public DateTime DataNascimento { get; set; }
+        public DateTime DataNascimento { get; set; } = DateTime.Today;
 
         [Required]
         [StringLength(50)]
